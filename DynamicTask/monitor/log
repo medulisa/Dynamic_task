@@ -1,0 +1,17 @@
+[INFO]  [20141013 16:05:36] [7F89F34AD7E0] IN KeyGenrator, load Flight Source successfully!
+[INFO]  [20141013 16:05:36] [7F89F34AD7E0] IN KeyGenrator, load City successfully!
+[INFO]  [20141013 16:05:36] [7F89F34AD7E0] IN KeyGenrator, load Flight Source successfully!
+[INFO]  [20141013 16:05:36] [7F89F34AD7E0] IN KeyGenrator, load City successfully!
+[INFO]  [20141013 16:05:36] [7F89F34AD7E0] read train ok!
+[INFO]  [20141013 16:05:37] [7F89F34AD7E0] UPDATE train_task_monitor ok!
+[INFO]  [20141013 16:05:38] [7F89F34AD7E0] IN KeyGenrator, load Flight Source successfully!
+[INFO]  [20141013 16:05:38] [7F89F34AD7E0] IN KeyGenrator, load City successfully!
+[INFO]  [20141013 16:05:39] [7F89F34AD7E0] read flight oneway ok!
+[INFO]  [20141013 16:05:39] [7F89F34AD7E0] read flight round ok!
+[INFO]  [20141013 16:05:53] [7F89F34AD7E0] UPDATE flight_task_monitor ok!
+[INFO]  [20141013 16:06:05] [7F89F34AD7E0] IN KeyGenrator, load Flight Source successfully!
+[INFO]  [20141013 16:06:05] [7F89F34AD7E0] IN KeyGenrator, load City successfully!
+[INFO]  [20141013 16:06:05] [7F89F34AD7E0] IN KeyGenrator, load Flight Source successfully!
+[INFO]  [20141013 16:06:05] [7F89F34AD7E0] IN KeyGenrator, load City successfully!
+[INFO]  [20141013 16:06:05] [7F89F34AD7E0] read room ok!
+[INFO]  [20141013 16:06:19] [7F89F34AD7E0] UPDATE room_task_monitor ok!

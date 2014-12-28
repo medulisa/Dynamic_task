@@ -1,0 +1,9 @@
+ delete ok!
+FLIGHT_KEY size is 79033, HOTEL_KEY size is 75884, TRAIN_KEY size is 10816
+
+FLIGHT_KEY1 size is 74624, HOTEL_KEY1 size is 75884, TRAIN_KEY1 size is 10816
+
+read flight_data ok!
+read room_data ok!
+read train_data ok!
+ insert ok!

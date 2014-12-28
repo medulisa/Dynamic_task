@@ -1,0 +1,8 @@
+[INFO]  [20141011 14:47:17] [7FD5FB0AF840] [IN TaskGenerator::readData, read 1 type data ok!]
+[INFO]  [20141011 14:49:16] [7FD5FB0AF840] [IN TaskGenerator::readData, read 2 type data ok!]
+[INFO]  [20141011 14:50:12] [7FD5FB0AF840] [IN TaskGenerator::readData, read 3 type data ok!]
+[INFO]  [20141011 14:51:16] [7FD5FB0AF840] load task error ok
+[INFO]  [20141011 14:51:19] [7FD5FB0AF840] [last assigned task size is 50076]
+[INFO]  [20141011 14:51:19] [7FD5FB0AF840] [error task size is 2719491]
+[INFO]  [20141011 14:51:19] [7FD5FB0AF840] [m_regular_data size is 3197707, m_longterm_data size is 5823635]
+[INFO]  [20141011 14:51:19] [7FD5FB0AF840] before assign

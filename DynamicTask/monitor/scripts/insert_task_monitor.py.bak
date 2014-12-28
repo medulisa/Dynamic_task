@@ -1,0 +1,102 @@
+#!/usr/bin/env python
+#coding=utf-8
+
+'''
+@author: ZhangYang
+@date: 2014.09.05
+@brief: 更新room_task_monitor和flight_task_monitor
+'''
+
+import db1
+import time
+import datetime
+import sys
+
+FLIGHT_KEY = []
+HOTEL_KEY = []
+
+# 读取长期表的workload_key
+def read_longterm_key(crawl_day):
+    host='10.66.115.222'
+    user='root'
+    passwd='miaoji@2014!'
+    db='workload'
+    sql = ''
+    if crawl_day == 'None':
+        sql = 'SELECT workload_key, source FROM workload_longterm'
+    else:
+        sql = 'SELECT workload_key, source FROM workload_longterm where crawl_day = ' + crawl_day
+    results = db1.QueryBySQL(host, user, passwd, db, sql)
+    try:
+        for result in results:
+            key = result['workload_key']
+            source = result['source']
+            if key.find('Flight') != -1:
+                source = source[0:-6]
+                FLIGHT_KEY.append((key, source))
+            elif key.find('Hotel') != -1:
+                source = source[0:-5]
+                HOTEL_KEY.append((key, source))
+    except Exception, e:
+        print str(e)
+
+# 读取static表的workload_key
+def read_static_key():
+    host='10.66.115.222'
+    user='root'
+    passwd='miaoji@2014!'
+    db='workload'
+    sql = 'SELECT workload_key, source FROM workload_static'
+    results = db1.QueryBySQL(host, user, passwd, db, sql)
+    try:
+        for result in results:
+            key = result['workload_key']
+            source = result['source']
+            if key.find('Flight') != -1:
+                source = source[0:-6]
+                FLIGHT_KEY.append((key, source))
+            elif key.find('Hotel') != -1:
+                source = source[0:-5]
+                HOTEL_KEY.append((key, source))
+    except Exception, e:
+        print str(e)
+
+# 将key插入monitor
+def insert_monitor_key(crawl_day):
+    if crawl_day == 'None':
+        read_longterm_key(crawl_day)
+        read_static_key()
+    else:
+        read_longterm_key(crawl_day)
+    
+    host='10.66.115.222'
+    user='root'
+    passwd='miaoji@2014!'
+    db='monitor'
+
+    print 'FLIGHT_KEY size is %d, HOTEL_KEY size is %d\n' % (len(FLIGHT_KEY), len(HOTEL_KEY))
+
+    # 插入flight key
+    try:
+        flight_data = [(i[0], i[1], 'NULL', 'NULL', 'NULL', 'NULL', 0.999) for i in FLIGHT_KEY ]
+        print 'read flight_data ok!'
+        sql = 'INSERT ignore INTO flight_task_monitor (workload_key, source, last_updatetime, last_price, updatetime, price, price_wave) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+        db1.ExecuteSQLs(host, user, passwd, db, sql, flight_data)
+    except Exception, e:
+        print str(e)
+
+    # 插入hotel key
+    try:
+        room_data = [(i[0], i[1], 'NULL', 'NULL', 'NULL', 'NULL', 0.999) for i in HOTEL_KEY ]
+        print 'read room_data ok!'
+        sql = 'INSERT ignore INTO room_task_monitor (workload_key, source, last_updatetime, last_price, updatetime, price, price_wave) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+        db1.ExecuteSQLs(host, user, passwd, db, sql, room_data)
+    except Exception, e:
+        print str(e)
+
+
+if __name__ == '__main__':
+    crawl_day = 'None'
+    if len(sys.argv) == 2:
+        crawl_day = sys.argv[1]
+    insert_monitor_key(crawl_day)
